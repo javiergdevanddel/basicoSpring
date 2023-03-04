@@ -2,27 +2,32 @@ package com.helloworld.basicospring.infra.readers;
 
 import com.helloworld.basicospring.controllers.CitaController;
 import com.helloworld.basicospring.models.Cita;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+@Component
 public class ConsoleReader  {
 
 	CitaController citaController;
-	SimpleDateFormat fechaFormateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.forLanguageTag("es_ES"));
+	SimpleDateFormat fechaFormateador; // = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.forLanguageTag("es_ES"));
 
 	public ConsoleReader(CitaController citaController){
 		this.citaController = citaController;
+		fechaFormateador = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.forLanguageTag("es_ES"));
 	}
 
+	@PostConstruct
 	public void init() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 		int opcion = 1;
 		String entradaConsola;
 		while(opcion != 0){
 			System.out.println("Menu por consola");
-			System.out.println("1.- Registrar nueva cita (nombre, apellidos, dd/MM/YYYY HH:MM");
+			System.out.println("1.- Registrar nueva cita (nombre, apellidos, dd/MM/yyyy HH:mm:ss");
 			System.out.println("2.- Borrar una cita (nombre)");
 			System.out.println("3.- Listar todas las citas");
 			//System.out.println("4.- ");
@@ -43,7 +48,7 @@ public class ConsoleReader  {
 					String nombre = scanner.next();
 					System.out.print("Inserte el apellidos: ");
 					String apellidos = scanner.next();
-					System.out.print("Inserte la fecha dd-MM-YYYY HH:mm:ss ");
+					System.out.print("Inserte la fecha dd/MM/yyyy HH:mm:ss ");
 					String fecha = scanner.nextLine();
 
 					Date fechaCita; // = new Date();

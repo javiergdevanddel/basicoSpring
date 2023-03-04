@@ -7,20 +7,28 @@ import com.helloworld.basicospring.repository.CitaRepository;
 import com.helloworld.basicospring.repository.impl.CitaRepositoryMemory;
 import com.helloworld.basicospring.services.CitaService;
 import com.helloworld.basicospring.services.impl.CitaServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class ConfigRepository {
 
-	public static ConsoleReader initConsoleReader(){
-		return new ConsoleReader(getCitaController());
-	}
-	public static CitaController getCitaController() {
-		return new CitaControllerImpl(getCitaService());
-	}
-	static CitaService getCitaService() {
-		return new CitaServiceImpl(getCitaRepository());
-	}
-
-	static CitaRepository getCitaRepository(){
+	@Bean
+	CitaRepository getCitaRepository(){
 		return new CitaRepositoryMemory();
 	}
+	@Bean
+	CitaService getCitaService() {
+		return new CitaServiceImpl(getCitaRepository());
+	}
+	@Bean
+	CitaController getCitaController() {
+		return new CitaControllerImpl(getCitaService());
+	}
+
+	@Bean
+	ConsoleReader initConsoleReader(){
+		return new ConsoleReader(getCitaController());
+	}
+
 }
