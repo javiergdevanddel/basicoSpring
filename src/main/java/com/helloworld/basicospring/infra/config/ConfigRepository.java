@@ -10,9 +10,10 @@ import com.helloworld.basicospring.services.impl.CitaServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class ConfigRepository {
 
+/*
 	@Bean
 	CitaRepository getCitaRepository(){
 		return new CitaRepositoryMemory();
@@ -30,5 +31,6 @@ public class ConfigRepository {
 	ConsoleReader initConsoleReader(){
 		return new ConsoleReader(getCitaController());
 	}
+*/
 
 }

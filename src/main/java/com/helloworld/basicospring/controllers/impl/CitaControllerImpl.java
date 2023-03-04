@@ -3,9 +3,11 @@ package com.helloworld.basicospring.controllers.impl;
 import com.helloworld.basicospring.controllers.CitaController;
 import com.helloworld.basicospring.models.Cita;
 import com.helloworld.basicospring.services.CitaService;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
+@Controller
 public class CitaControllerImpl implements CitaController {
 
 	CitaService citaService;
